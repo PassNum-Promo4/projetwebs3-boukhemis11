@@ -1,0 +1,102 @@
+
+<!--
+<nav class="navbar navbar-expand-lg navbar-white bg-white">
+  <a class="navbar-brand" *ngIf="!authService.isLoggedIn()" [routerLink]="['login']">Voiture Manager</a>
+          <a class="navbar-brand" *ngIf="authService.isLoggedIn()" [routerLink]="['profile']">Voiture Manager</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav text-white">
+      <li class="nav-item text-white"><a routerLink="report" routerLinkActive="active">Report</a></li>
+      <li class="nav-item text-white"><a routerLink="voiture" routerLinkActive="active">Add voiture</a></li>
+      <li class="nav-item text-white"><a routerLink="about" routerLinkActive="active">About</a></li>
+
+    </ul>
+  </div>
+  <div class="log">
+    <ul class="nav navbar-nav navbar-right float-right">
+      <li *ngIf="!authService.isLoggedIn()">
+          <a routerLink="login" routerLinkActive="active">Log In</a>
+      </li>
+      <li *ngIf="authService.isLoggedIn()">
+          <ul class="menu float-right">
+              <li>
+                  Welcome {{ authService.currentUser.firstname }}
+                  <ul>
+                      <li routerLink="profile">My Profile</li>
+                      <li routerLink="password">Change Password</li>
+                      <li routerLink="logout">Logout</li>
+                  </ul>
+              </li>
+          </ul>
+      </li>
+  </ul>
+  </div>
+</nav>
+-->
+<!--Navbar-->
+<mdb-navbar SideClass="navbar navbar-expand-lg navbar-dark pink darken-4 mb-3">
+
+  <!-- Navbar brand -->
+  <logo><a class="navbar-brand" [routerLink]="['profile']">Voiture Manager</a></logo>
+
+  <!-- Collapsible content -->
+  <links>
+
+      <!-- Links -->
+      <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+              <a routerLink="report" class="nav-link waves-light" mdbWavesEffect>véhicule<span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+              <a routerLink="voiture" class="nav-link waves-light" mdbWavesEffect>voiture</a>
+          </li>
+          <li class="nav-item">
+              <a routerLink="about" class="nav-link waves-light" mdbWavesEffect>about</a>
+          </li>
+      </ul>
+      <!-- Links -->
+
+<!-- Search form -->
+      <form class="form-inline waves-light" mdbWavesEffect>
+          <div class="md-form mt-0">
+              <input class="form-control mr-sm-2" type="text" placeholder="Search">
+          </div>
+      </form>
+      <div class="log">
+        <ul class="navbar-nav">
+          <li *ngIf="!authService.isLoggedIn()">
+              <a class="nav-item text-white"  routerLink="login" routerLinkActive="active">Log In</a>
+          </li>
+          <li *ngIf="authService.isLoggedIn()">
+              <ul dropdownToggle class="nav-link">
+                  <li class="nav-item dropdown" dropdown>
+                      <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+                          <span class="caret">Welcome {{ authService.currentUser.firstname }}</span></a>
+                      <ul *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
+                          <li class="nav-item text-white"><a routerLink="profile" routerLinkActive="active">My Profile</a></li>
+                          <li class="nav-item text-white"><a routerLink="password" routerLinkActive="active">Change Password</a></li>
+                          <li class="nav-item text-white"><a routerLink="logout" routerLinkActive="active">Logout</a></li>
+                      </ul>
+                  </li>
+              </ul>
+          </li>
+       </ul>
+      </div>
+  </links>
+  <!-- Collapsible content -->
+
+</mdb-navbar>
+<!--/.Navbar-->
+
+<router-outlet></router-outlet>
+
+<footer class="footer">
+  <div class="container">
+
+  </div>
+</footer>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>

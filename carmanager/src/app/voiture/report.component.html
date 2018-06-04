@@ -1,0 +1,117 @@
+
+
+<div class="container pagecontainer">
+  <div class="page-header">
+      <h1>Les Voiture</h1>
+  </div>
+
+  <div class="panel panel-info">
+      <div class="panel-heading">
+
+      </div>
+      <div class="panel-body">
+          <form [formGroup]="reportForm" (ngSubmit)="getReport(reportForm.value)" class="form-horizontal" novalidate autocomplete="off">
+              <div class="row">
+                  <div class="col-sm-12 col-md-2">
+                      <div class="radio">
+                          <label>
+                              <input type="radio" name="report" value="opt3" [formControl]="report" >
+                              Tout
+                          </label>
+                      </div>
+                  </div>
+
+                  <div class="col-sm-12 col-md-2">
+                      <div class="radio">
+                          <label>
+                              <input type="radio" name="report" value="opt1" [formControl]="report">
+                              Ce mois
+                          </label>
+                      </div>
+                  </div>
+                  <div class="col-sm-12 col-md-2">
+                      <button type="submit" class="btn btn-outline-pink darken-4" [disabled]="reportForm.invalid">Submit</button>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+
+  <div class="panel panel-danger" *ngIf="voitures && totalrows < 1">
+      <div class="panel-heading">
+          <h3 class="panel-title">Aucune voiture trouvée</h3>
+      </div>
+
+      <div class="panel-body">
+          Vous avez pas des voiture , Veuillez ajouter vos voitures <a routerLink="/voiture">ici</a>.
+      </div>
+  </div>
+
+
+  <div class="panel panel-default" *ngIf="voitures && totalrows > 0">
+      <div class="panel-heading">
+          <h3 class="panel-title">voiture report <i>{{reportTitle}}</i></h3>
+      </div>
+      <div class="panel-body">
+          <div class="table-responsive">
+              <table class="table">
+                  <thead>
+                      <tr>
+                          <th width="10%"><a style="cursor:pointer" (click)="sortVoiture('voituredate')">Date</a></th>
+                          <th width="10%"><a style="cursor:pointer" (click)="sortVoiture('voituredate2')">Date2</a></th>
+                          <th width="10%"><a style="cursor:pointer" (click)="sortVoiture('voituretype')">Account</a></th>
+                          <th width="20%">Description</th>
+                          <th width="15%" class="text-right"><a style="cursor:pointer" (click)="sortVoiture('voitureamt')">Amount</a></th>
+                          <th width="35%">Action</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor='let exp of voitures; let expIndex = index'>
+                          <td>{{ exp.voituredate | date: 'd MMM y'}}</td>
+                          <td>{{ exp.voituredate2 | date: 'd MMM y'}}</td>
+                          <td>{{ exp.voituretype}}</td>
+                          <td>{{ exp.voituredesc}}</td>
+                          <td class="text-right">{{ exp.voitureamt | currency: 'EURO ':true }}</td>
+                          <td>
+                              <button  type="button" class="btn btn-outline-primary waves-light" aria-label="View" (click)="showVoiture(exp._id)">
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true">View</span>
+                              </button>
+                              <button  type="button" class="btn btn-outline-default waves-light" aria-label="Edit" (click)="editVoiture(exp._id)">
+                                  <span class="glyphicon glyphicon-pencil" aria-hidden="true">Edit</span>
+                              </button>
+                              <button  type="button" class="btn btn-outline-danger waves-light" aria-label="Delete" (click)="confirmDel(expIndex, exp._id)">
+                                  <span class="glyphicon glyphicon-trash" aria-hidden="true">Delete</span>
+                              </button>
+                          </td>
+                      </tr>
+
+                  </tbody>
+              </table>
+          </div>
+
+          <!--Pagination -->
+<nav class="my-4">
+    <ul class="pagination pagination-circle pg-blue mb-0">
+
+        <!--Numbers-->
+
+        <li class="page-item" *ngFor="let item of createPager(pgCounter); let idx = index">
+            <a [ngClass]="{'selected': qpage == idx + 1 }" class="page-link" style="cursor:pointer" (click) = "setPage(idx + 1)" mdbWavesEffect>{{ idx + 1 }}</a>
+        </li>
+
+
+
+    </ul>
+</nav>
+
+
+      </div>
+  </div>
+</div>
+
+
+
+
+
+
+

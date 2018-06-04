@@ -1,0 +1,88 @@
+<div class="container pagecontainer">
+  <div class="page-header">
+      <h1>{{ pgTitle }} voiture</h1>
+  </div>
+
+  <form [formGroup]="voitureForm" (ngSubmit)="saveVoiture(voitureForm.value)" class="form-horizontal" novalidate autocomplete="off">
+      <div class="form-group" [ngClass]="{'has-error': voitureForm.get('cardate').invalid && voitureForm.get('cardate').dirty}">
+          <label for="cardt" class="col-sm-2 control-label">Date d'ajoute</label>
+          <div class="md-form col-sm-10">
+              <div class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></div>
+              <input type="date" class="form-control" id="cardt" [formControl]="cardate" placeholder="yyyy-mm-dd">
+          </div>
+          <div class="text-danger" *ngIf="voitureForm.get('cardate').dirty && voitureForm.get('cardate').errors">
+              <span class="col-sm-2"></span>
+              <span class="col-sm-10" style="padding:4px 0 0" *ngIf="voitureForm.get('cardate').errors.required">
+                Veuillez entrer une date
+              </span>
+              <span class="col-sm-10" style="padding:4px 0 0" *ngIf="voitureForm.get('cardate').errors.pattern">
+                Veuillez entrer une date valide
+              </span>
+          </div>
+      </div>
+
+      <div class="form-group" [ngClass]="{'has-error': voitureForm.get('cardate2').invalid && voitureForm.get('cardate2').dirty}">
+        <label for="cardt2" class="col-sm-2 control-label">Date de prochaine service</label>
+
+        <div class="md-form col-sm-10">
+            <div class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></div>
+            <input type="date" class="form-control" id="cardt2" [formControl]="cardate2" placeholder="yyyy-mm-dd">
+        </div>
+        <div class="text-danger" *ngIf="voitureForm.get('cardate2').dirty && voitureForm.get('cardate2').errors">
+            <span class="col-sm-2"></span>
+            <span class="col-sm-10" style="padding:4px 0 0" *ngIf="voitureForm.get('cardate2').errors">
+              Veuillez entrer une date
+            </span>
+
+        </div>
+    </div>
+
+      <div class="form-group" [ngClass]="{'has-error': voitureForm.get('caraccount').invalid && voitureForm.get('caraccount').dirty}">
+          <label for="exptyp" class="col-sm-2 control-label">Type de service</label>
+          <div class="input-group col-sm-10">
+              <div class="input-group-addon"><i class="glyphicon glyphicon-list-alt"></i></div>
+              <select class="form-control" [formControl]="caraccount">
+                  <option></option>
+                  <option class="p-2" *ngFor="let a of acc" >{{a}}</option>
+              </select>
+          </div>
+          <div class="text-danger" *ngIf="voitureForm.get('caraccount').dirty && voitureForm.get('caraccount').errors">
+              <span class="col-sm-2"></span>
+              <span class="col-sm-10" style="padding:4px 0 0" *ngIf="voitureForm.get('caraccount').errors">
+                Veuillez sélectionner un type
+              </span>
+          </div>
+      </div>
+      <div class="form-group" [ngClass]="{'has-error': voitureForm.get('caramt').invalid && voitureForm.get('caramt').dirty}">
+
+          <div  class="md-form col-sm-10">
+
+              <input type="number" class="form-control" id="caramt" [formControl]="caramt" placeholder="Montant">
+          </div>
+          <div class="text-danger" *ngIf="voitureForm.get('caramt').dirty && voitureForm.get('caramt').errors">
+              <span class="col-sm-2"></span>
+              <span class="col-sm-10" style="padding:4px 0 0" *ngIf="voitureForm.get('caramt').errors">
+                Veuillez entrer un montant valide
+              </span>
+
+          </div>
+      </div>
+      <div class="form-group col-sm-10">
+
+          <div  class="input-group">
+              <textarea class="form-control" id="cardesc" rows="3" [formControl]="cardesc" placeholder="Description"></textarea>
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label class="col-sm-2 control-label"></label>
+          <div class="col-sm-10">
+              <button type="submit" [disabled]="voitureForm.invalid" class="btn btn-outline-pink darken-4">{{ btnLbl }}</button>
+              <button type="reset" class="btn btn-default" *ngIf="btnLbl == 'Update'" (click)="onBack()">Back</button>
+          </div>
+      </div>
+  </form>
+
+</div>
+
+
