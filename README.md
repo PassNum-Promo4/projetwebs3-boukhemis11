@@ -1,1 +1,4 @@
-# projetwebs3-boukhemis11
+- git clone 
+- copie the pakage.json in carmanager folder
+- in carmanager folder run npm install
+- run ng serve -o
