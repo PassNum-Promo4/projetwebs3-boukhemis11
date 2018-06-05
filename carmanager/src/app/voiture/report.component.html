@@ -50,7 +50,7 @@
 
   <div class="panel panel-default" *ngIf="voitures && totalrows > 0">
       <div class="panel-heading">
-          <h3 class="panel-title">voiture report <i>{{reportTitle}}</i></h3>
+
       </div>
       <div class="panel-body">
           <div class="table-responsive">
@@ -74,13 +74,13 @@
                           <td class="text-right">{{ exp.voitureamt | currency: 'EURO ':true }}</td>
                           <td>
                               <button  type="button" class="btn btn-outline-primary waves-light" aria-label="View" (click)="showVoiture(exp._id)">
-                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true">View</span>
+                                <span class="glyphicon glyphicon-eye-open" aria-hidden="true">Voir</span>
                               </button>
                               <button  type="button" class="btn btn-outline-default waves-light" aria-label="Edit" (click)="editVoiture(exp._id)">
-                                  <span class="glyphicon glyphicon-pencil" aria-hidden="true">Edit</span>
+                                  <span class="glyphicon glyphicon-pencil" aria-hidden="true">Modifier</span>
                               </button>
                               <button  type="button" class="btn btn-outline-danger waves-light" aria-label="Delete" (click)="confirmDel(expIndex, exp._id)">
-                                  <span class="glyphicon glyphicon-trash" aria-hidden="true">Delete</span>
+                                  <span class="glyphicon glyphicon-trash" aria-hidden="true">Supprimer</span>
                               </button>
                           </td>
                       </tr>
